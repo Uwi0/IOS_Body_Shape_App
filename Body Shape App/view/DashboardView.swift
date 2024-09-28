@@ -8,6 +8,11 @@ struct DashboardView: View {
                 angle: 45
             )
             .padding()
+            VStack(alignment: .leading) {
+                WelcomeMessageView(username: "Peno")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
             Spacer()
         }
         
