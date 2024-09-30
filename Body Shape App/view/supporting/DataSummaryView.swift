@@ -8,6 +8,7 @@ struct DataSummaryView: View {
     private let delta = 10.0
     private let percent1 = 0.6
     private let percent2 = 0.4
+    private let peopleShownCount = 2
     private let personImages = [
         person1, person2, person3, person4
     ]
@@ -75,15 +76,19 @@ struct DataSummaryView: View {
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                 HStack(spacing: -10) {
-                                    let extraPeople = min(personImages.count, 2)
+                                    let extraPeople = min(personImages.count, peopleShownCount)
                                     let circleDim = 45.0
                                     ForEach(0 ..< extraPeople, id: \.self) { i in
-                                        Circle()
-                                            .frame(width: circleDim)
+                                        CircleImageView(imageName: personImages[i], color: .black, size: circleDim, lineWidth: 1)
                                     }
                                     if personImages.count > 2 {
-                                        Text("\(personImages.count - extraPeople)")
-                                            .foregroundStyle(.white)
+                                        let peopleCount = personImages.count - extraPeople
+                                        CircleCoutnView(
+                                            count: peopleCount,
+                                            size: circleDim,
+                                            color: .black,
+                                            lineWidth: 1
+                                        )
                                     }
                                 }
                             }
