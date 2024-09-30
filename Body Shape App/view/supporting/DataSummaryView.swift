@@ -58,6 +58,38 @@ struct DataSummaryView: View {
                         .frame(width: geometry.size.width * (1 - percent1) - delta)
                 }
                 .frame(height: geometry.size.width * (1 - percent1) - delta)
+                HStack(spacing: 15) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.black)
+                        .frame(width: geometry.size.width * percent2 - delta)
+                        .overlay {
+                            Text("Start")
+                                .fontWeight(.bold)
+                                .foregroundStyle(.white)
+                        }
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.black, lineWidth: 1)
+                        .overlay {
+                            VStack {
+                                Text("Members")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                HStack(spacing: -10) {
+                                    let extraPeople = min(personImages.count, 2)
+                                    let circleDim = 45.0
+                                    ForEach(0 ..< extraPeople, id: \.self) { i in
+                                        Circle()
+                                            .frame(width: circleDim)
+                                    }
+                                    if personImages.count > 2 {
+                                        Text("\(personImages.count - extraPeople)")
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                            }
+                        }
+                }
+                .frame(height: geometry.size.width * percent2 - delta)
             }
         }
     }
